@@ -3,13 +3,25 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 
 const Alumn = ({ params }) => {
   let alumnId = params.id;
   const [isLoading, setIsLoading] = useState(true);
-  const [alumn, setAlumn] = useState(true);
+  const [alumn, setAlumn] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
+  const [data, setData] = useState({
+    note: "",
+  });
   // console.log(alumnId);
+
+  const toggleEdit = () => {
+    setIsEditing(!isEditing);
+  };
+
+  const handleInputChange = (evt) => {
+    // console.log(evt.target.value);
+    setData({ ...data, note: evt.target.value });
+  };
 
   useEffect(() => {
     setIsLoading(true);
@@ -17,8 +29,9 @@ const Alumn = ({ params }) => {
       .get(`/api/alumns/${alumnId}`)
       .then((res) => {
         setAlumn(res.data);
-        // console.log(res);
+        // console.log(res.data);
         res.status === 200 ? setIsLoading(false) : null;
+        setData({ note: res.data.note });
       })
       .catch((err) => console.error(err));
   }, [alumnId]);
@@ -37,7 +50,7 @@ const Alumn = ({ params }) => {
               <span className="text-xl font-semibold">{alumn.name}</span>
               <Link
                 href="/dashboard"
-                className="bg-slate-300 uppercase font-semibold px-6 py-2 rounded-lg hover:bg-slate-400 hover:text-white cursor-pointer"
+                className="bg-slate-300 uppercase font-semibold px-6 py-1 rounded-lg hover:bg-slate-400 hover:text-white cursor-pointer"
               >
                 Back
               </Link>
@@ -62,10 +75,32 @@ const Alumn = ({ params }) => {
               </ul>
             </div>
             <div className="bg-slate-200 p-3 rounded-lg h-full w-full overflow-y-auto">
-              <h6 className="font-bold text-xl pb-2 border-b-2 border-white">
-                Notes
-              </h6>
-              <p>{alumn.note}</p>
+              <div className="pb-2 border-b-2 border-white flex items-center justify-between w-full">
+                <h6 className="font-bold text-xl">Notes</h6>
+                <button
+                  type="button"
+                  className="bg-slate-300 uppercase font-semibold px-6 py-1 rounded-lg hover:bg-slate-400 hover:text-white cursor-pointer"
+                  onClick={toggleEdit}
+                >
+                  {isEditing ? <>Done</> : <>Edit</>}
+                </button>
+              </div>
+              <div className={isEditing ? "h-full" : ""}>
+                {isEditing ? (
+                  <>
+                    <textarea
+                      type="text"
+                      name="notes_input"
+                      id="notes_input"
+                      value={data.note}
+                      onChange={handleInputChange}
+                      className="h-full w-full overflow-y-auto p-2"
+                    ></textarea>
+                  </>
+                ) : (
+                  <p className="p-2">{data.note}</p>
+                )}
+              </div>
             </div>
           </div>
         </>

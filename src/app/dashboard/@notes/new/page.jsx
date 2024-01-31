@@ -1,9 +1,9 @@
 "use client";
-import notes from "@/data/notes";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const NewNoteView = () => {
+  const [data, setData] = useState([]);
   const [nextNote, setNextNote] = useState({
     note_name: "",
     note_text: "",
@@ -18,21 +18,42 @@ const NewNoteView = () => {
   };
 
   const addNewNote = () => {
-    notes.push(nextNote);
+    let temp = [nextNote, ...data]; // aggiungo il nuovo elemento in prima posizione
+    // console.log(temp);
+    setData(temp);
+    localStorage.setItem("storageNotes", JSON.stringify(temp));
+    // console.log(localStorage);
     setNextNote({
       note_name: "",
       note_text: "",
     });
   };
 
+  useEffect(() => {
+    let storage;
+    if (typeof window !== "undefined") {
+      storage = localStorage.getItem("storageNotes");
+      storage = storage ? JSON.parse(storage) : [];
+      // console.log(storage);
+    }
+
+    if (storage && storage.length > 0) {
+      setData(storage);
+      // console.log(data);
+    } else {
+      setData([]);
+      // console.log(data);
+    }
+  }, []);
+
   return (
     <>
       <div className="w-full shadow-lg rounded-3xl p-5 bg-slate-50">
-        <div className=" border-b pb-3 flex items-center justify-between w-full">
-          <span className="text-xl font-semibold">New Note</span>
+        <div className="font-semibold border-b py-3 px-5 shadow-lg rounded-xl w-full flex items-center justify-between">
+          <span className="text-xl">New Note</span>
           <Link
             href="/dashboard"
-            className="bg-slate-200 uppercase font-semibold px-6 py-2 rounded-lg hover:bg-slate-300 hover:text-white cursor-pointer"
+            className="bg-slate-200 uppercase px-6 py-1 rounded-lg hover:bg-slate-300 hover:text-white cursor-pointer"
           >
             Back
           </Link>
@@ -70,12 +91,20 @@ const NewNoteView = () => {
                 />
               </div>
             </div>
-            <button
-              type="submit"
-              className="bg-slate-200 uppercase font-semibold px-6 py-2 rounded-lg hover:bg-slate-300 hover:text-white cursor-pointer"
-            >
-              Add
-            </button>
+            <div className="flex items-center justify-end gap-2">
+              <button
+                type="reset"
+                className="bg-slate-200 uppercase font-semibold px-6 py-1 rounded-lg hover:bg-slate-300 hover:text-white cursor-pointer"
+              >
+                Reset
+              </button>
+              <button
+                type="submit"
+                className="bg-slate-200 uppercase font-semibold px-6 py-1 rounded-lg hover:bg-slate-300 hover:text-white cursor-pointer"
+              >
+                Add
+              </button>
+            </div>
           </form>
         </div>
       </div>

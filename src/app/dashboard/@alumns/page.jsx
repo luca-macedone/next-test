@@ -38,38 +38,51 @@ const AlumnsSlot = () => {
           Alumns
         </h2>
         <div className="h-80 overflow-y-auto">
-          <ul className="py-2">
-            {!isLoading &&
-              data.map((alumn) => {
-                // console.log(alumn);
-                return (
-                  <li
-                    className="flex items-center gap-4 shadow-lg rounded-3xl p-3 my-5 mx-3 bg-slate-200"
-                    key={alumn.id}
-                  >
-                    <div>
-                      <img
-                        src={alumn.avatar}
-                        alt={alumn.name}
-                        className="rounded-full h-20"
-                      />
-                    </div>
-                    <div className="flex items-center justify-between w-full">
-                      <h5>{alumn.name}</h5>
-                      <Link
-                        href={`/dashboard/details/${alumn.id}`}
-                        className="bg-slate-300 uppercase font-semibold px-6 py-2 rounded-lg hover:bg-slate-400 hover:text-white cursor-pointer"
-                      >
-                        details
-                      </Link>
-                    </div>
-                  </li>
-                );
-              })}
-            {isLoading && (
-              <>
-                <h1>Loading...</h1>
-              </>
+          <ul className="py-1">
+            {!isLoading ? (
+              data.length > 0 ? (
+                data.map((alumn) => {
+                  // console.log(alumn);
+                  return (
+                    <li
+                      className="flex items-center gap-4 shadow-lg rounded-3xl px-3 py-2 mx-3 my-5 bg-slate-200"
+                      key={alumn.id}
+                    >
+                      <div>
+                        <img
+                          src={alumn.avatar}
+                          alt={alumn.name}
+                          className="rounded-full h-20"
+                        />
+                      </div>
+                      <div className="flex items-center justify-between w-full">
+                        <h5>{alumn.name}</h5>
+                        <Link
+                          href={`/dashboard/details/${alumn.id}`}
+                          className="bg-slate-100 uppercase font-semibold px-3 py-1 rounded-lg hover:bg-slate-300 hover:text-white cursor-pointer"
+                        >
+                          details
+                        </Link>
+                      </div>
+                    </li>
+                  );
+                })
+              ) : (
+                <div className="h-full w-full flex items-center justify-center">
+                  <h2 className="bg-slate-100 w-full rounded-lg py-5 mx-1 shadow-lg text-center">
+                    Nothing here...yet!
+                  </h2>
+                </div>
+              )
+            ) : (
+              <div className="w-full h-full flex items-center justify-center">
+                <h2 className="bg-slate-100 rounded-xl shadow-lg flex items-center justify-center gap-3 w-full py-5 mx-1">
+                  Loading...
+                  <span class="material-symbols-outlined animate-spin">
+                    progress_activity
+                  </span>
+                </h2>
+              </div>
             )}
           </ul>
         </div>
