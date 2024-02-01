@@ -78,6 +78,24 @@ const Alumn = ({ params }) => {
                     <span className="font-semibold">Class</span>
                     <span>{alumn.class}</span>
                   </li>
+                  {alumn.homeworks.length > 0 && (
+                    <li className="">
+                      <h5 className="font-semibold border-b">Homeworks</h5>
+                      <ul className="flex items-center gap-2 w-full flex-wrap p-2">
+                        {alumn.homeworks.map((item) => {
+                          return (
+                            <li
+                              key={item.id}
+                              className="px-3 py-1 border rounded-lg flex items-center gap-2 shadow-md italic"
+                            >
+                              {item.name}
+                              <span>{item.done ? <>✔️</> : <>❌</>}</span>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </li>
+                  )}
                 </ul>
               </div>
             </div>

@@ -26,5 +26,20 @@ export async function GET(request, { params }) {
       return new Response({ status: 404, body: null });
     });
 
+  await axios
+    .get(
+      `https://65b3bd08770d43aba47a5479.mockapi.io/api/v1/next-test/alumns/${id}/homeworks`,
+      { httpsAgent }
+    )
+    .then((response) => {
+      alumn = { ...alumn, homeworks: response.data };
+      // console.log(response.data);
+      // console.log(alumn);
+    })
+    .catch((err) => {
+      console.error(err);
+      return new Response({ status: 404, body: null });
+    });
+
   return new Response(JSON.stringify(alumn));
 }
