@@ -3,6 +3,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import editAlumn from "@/actions/editAlumnAction";
 
 const Alumn = ({ params }) => {
   let alumnId = params.id;
@@ -12,14 +13,12 @@ const Alumn = ({ params }) => {
   const [data, setData] = useState({
     note: "",
   });
-  // console.log(alumnId);
 
   const toggleEdit = () => {
     setIsEditing(!isEditing);
   };
 
   const handleInputChange = (evt) => {
-    // console.log(evt.target.value);
     setData({ ...data, note: evt.target.value });
   };
 
@@ -29,7 +28,7 @@ const Alumn = ({ params }) => {
       .get(`/api/alumns/${alumnId}`)
       .then((res) => {
         setAlumn(res.data);
-        // console.log(res.data);
+
         res.status === 200 ? setIsLoading(false) : null;
         setData({ note: res.data.note });
       })
@@ -57,45 +56,66 @@ const Alumn = ({ params }) => {
             </div>
           </div>
           <div className="h-80 flex flex-col items-start justify-start">
-            <div className="p-3 rounded-lg">
+            <div className="p-3 rounded-lg w-full">
               <h6 className="font-bold text-xl">About</h6>
-              <ul className="w-96">
-                <li className="flex items-center justify-between gap-10">
-                  <span className="font-semibold">Name</span>
-                  <span>{alumn.name}</span>
-                </li>
-                <li className="flex items-center justify-between gap-10">
-                  <span className="font-semibold">City</span>
-                  <span>{alumn.city}</span>
-                </li>
-                <li className="flex items-center justify-between gap-10">
-                  <span className="font-semibold">Address</span>
-                  <span>{alumn.address}</span>
-                </li>
-              </ul>
+              <div className="w-full flex items-start justify-start gap-12">
+                <ul className="">
+                  <li className="flex items-center justify-between gap-10">
+                    <span className="font-semibold">Name</span>
+                    <span>{alumn.name}</span>
+                  </li>
+                  <li className="flex items-center justify-between gap-10">
+                    <span className="font-semibold">City</span>
+                    <span>{alumn.city}</span>
+                  </li>
+                  <li className="flex items-center justify-between gap-10">
+                    <span className="font-semibold">Address</span>
+                    <span>{alumn.address}</span>
+                  </li>
+                </ul>
+                <ul className="border-s-2 px-5">
+                  <li className="flex items-center justify-between gap-10">
+                    <span className="font-semibold">Class</span>
+                    <span>{alumn.class}</span>
+                  </li>
+                </ul>
+              </div>
             </div>
             <div className="bg-slate-200 p-3 rounded-lg h-full w-full overflow-y-auto">
               <div className="pb-2 border-b-2 border-white flex items-center justify-between w-full">
                 <h6 className="font-bold text-xl">Notes</h6>
                 <button
-                  type="button"
+                  type={isEditing ? "reset" : "button"}
                   className="bg-slate-300 uppercase font-semibold px-6 py-1 rounded-lg hover:bg-slate-400 hover:text-white cursor-pointer"
                   onClick={toggleEdit}
                 >
-                  {isEditing ? <>Done</> : <>Edit</>}
+                  {isEditing ? <>Close</> : <>Edit</>}
                 </button>
               </div>
               <div className={isEditing ? "h-full" : ""}>
                 {isEditing ? (
                   <>
-                    <textarea
-                      type="text"
-                      name="notes_input"
-                      id="notes_input"
-                      value={data.note}
-                      onChange={handleInputChange}
-                      className="h-full w-full overflow-y-auto p-2"
-                    ></textarea>
+                    <form
+                      action={() => {
+                        setIsEditing(!isEditing);
+                        editAlumn(data, alumnId);
+                      }}
+                    >
+                      <textarea
+                        type="text"
+                        name="notes_input"
+                        id="notes_input"
+                        value={data.note}
+                        onChange={handleInputChange}
+                        className="w-full p-2"
+                      ></textarea>
+                      <button
+                        type="submit"
+                        className="bg-slate-300 uppercase font-semibold px-6 py-1 rounded-lg hover:bg-slate-400 hover:text-white cursor-pointer"
+                      >
+                        Done
+                      </button>
+                    </form>
                   </>
                 ) : (
                   <p className="p-2">{data.note}</p>

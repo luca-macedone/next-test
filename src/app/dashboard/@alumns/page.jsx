@@ -56,7 +56,10 @@ const AlumnsSlot = () => {
                         />
                       </div>
                       <div className="flex items-center justify-between w-full">
-                        <h5>{alumn.name}</h5>
+                        <div>
+                          <h5>{alumn.name}</h5>
+                          <small className="italic">{alumn.class}</small>
+                        </div>
                         <Link
                           href={`/dashboard/details/${alumn.id}`}
                           className="bg-slate-100 uppercase font-semibold px-3 py-1 rounded-lg hover:bg-slate-300 hover:text-white cursor-pointer"
@@ -78,7 +81,7 @@ const AlumnsSlot = () => {
               <div className="w-full h-full flex items-center justify-center">
                 <h2 className="bg-slate-100 rounded-xl shadow-lg flex items-center justify-center gap-3 w-full py-5 mx-1">
                   Loading...
-                  <span class="material-symbols-outlined animate-spin">
+                  <span className="material-symbols-outlined animate-spin">
                     progress_activity
                   </span>
                 </h2>
