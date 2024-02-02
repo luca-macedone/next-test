@@ -9,7 +9,7 @@ export const metadata = {
 export default function RootLayout({ alumns, homeworks, notes }) {
   return (
     <>
-      <AppNavbar />
+      {/* <AppNavbar /> */}
       <div className="container mx-auto py-6 px-1">
         <div className="grid grid-flow-row grid-cols-1 md:grid-cols-2 gap-5">
           <div className="col-span-1 md:col-span-2 h-full">{alumns}</div>
@@ -17,7 +17,7 @@ export default function RootLayout({ alumns, homeworks, notes }) {
           <div className="h-full">{notes}</div>
         </div>
       </div>
-      <AppFooter />
+      {/* <AppFooter /> */}
     </>
   );
 }

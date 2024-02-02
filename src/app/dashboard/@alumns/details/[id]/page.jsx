@@ -56,47 +56,53 @@ const Alumn = ({ params }) => {
             </div>
           </div>
           <div className="h-80 flex flex-col items-start justify-start">
-            <div className="p-3 rounded-lg w-full">
-              <h6 className="font-bold text-xl">About</h6>
-              <div className="w-full flex items-start justify-start gap-12">
-                <ul className="">
-                  <li className="flex items-center justify-between gap-10">
-                    <span className="font-semibold">Name</span>
-                    <span>{alumn.name}</span>
-                  </li>
-                  <li className="flex items-center justify-between gap-10">
-                    <span className="font-semibold">City</span>
-                    <span>{alumn.city}</span>
-                  </li>
-                  <li className="flex items-center justify-between gap-10">
-                    <span className="font-semibold">Address</span>
-                    <span>{alumn.address}</span>
-                  </li>
-                </ul>
-                <ul className="border-s-2 px-5">
-                  <li className="flex items-center justify-between gap-10">
-                    <span className="font-semibold">Class</span>
-                    <span>{alumn.class}</span>
-                  </li>
-                  {alumn.homeworks.length > 0 && (
-                    <li className="">
-                      <h5 className="font-semibold border-b">Homeworks</h5>
-                      <ul className="flex items-center gap-2 w-full flex-wrap p-2">
-                        {alumn.homeworks.map((item) => {
-                          return (
-                            <li
-                              key={item.id}
-                              className="px-3 py-1 border rounded-lg flex items-center gap-2 shadow-md italic"
-                            >
-                              {item.name}
-                              <span>{item.done ? <>✔️</> : <>❌</>}</span>
-                            </li>
-                          );
-                        })}
-                      </ul>
+            <div className="p-3 rounded-lg w-full flex items-start justify-between">
+              <div>
+                <h6 className="font-bold text-xl">About</h6>
+                <div className="w-full flex items-start justify-start gap-12">
+                  <ul className="">
+                    <li className="flex items-center justify-between gap-10">
+                      <span className="font-semibold">Name</span>
+                      <span>{alumn.name}</span>
                     </li>
-                  )}
-                </ul>
+                    <li className="flex items-center justify-between gap-10">
+                      <span className="font-semibold">City</span>
+                      <span>{alumn.city}</span>
+                    </li>
+                    <li className="flex items-center justify-between gap-10">
+                      <span className="font-semibold">Address</span>
+                      <span>{alumn.address}</span>
+                    </li>
+                  </ul>
+                  <ul className="border-s-2 px-5">
+                    <li className="flex items-center justify-between gap-10">
+                      <span className="font-semibold">Class</span>
+                      <span>{alumn.class}</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div>
+                {alumn.homeworks.length > 0 && (
+                  <>
+                    <h5 className="text-xl font-semibold border-b py-3 px-5 shadow rounded-xl">
+                      Homeworks
+                    </h5>
+                    <ul className="flex items-center gap-2 w-full flex-wrap py-2">
+                      {alumn.homeworks.map((item) => {
+                        return (
+                          <li
+                            key={item.id}
+                            className="px-3 py-1 border rounded-lg flex items-center gap-2 shadow italic"
+                          >
+                            {item.name}
+                            <span>{item.done ? <>✔️</> : <>❌</>}</span>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </>
+                )}
               </div>
             </div>
             <div className="bg-slate-200 p-3 rounded-lg h-full w-full overflow-y-auto">

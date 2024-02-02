@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import links from "@/data/links";
 
 export default function AppNavbar() {
   return (
@@ -9,22 +10,18 @@ export default function AppNavbar() {
           Teacher Dashboard
         </h5>
         <ul className="flex items-center justify-end gap-2">
-          <li>
-            <Link
-              href="/"
-              className="p-2 rounded-md border border-transparent hover:border-slate-800 transition-colors ease-in-out duration-200 uppercase"
-            >
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/dashboard"
-              className="p-2 rounded-md border border-transparent hover:border-slate-800 transition-colors ease-in-out duration-200 uppercase"
-            >
-              Dashboard
-            </Link>
-          </li>
+          {links.map((link) => {
+            return (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className="p-2 rounded-md border border-transparent hover:border-slate-800 transition-colors ease-in-out duration-200 uppercase"
+                >
+                  {link.title}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </header>

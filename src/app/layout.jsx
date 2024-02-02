@@ -1,4 +1,6 @@
+import AppFooter from "@/components/AppFooter";
 import "./globals.css";
+import AppNavbar from "@/components/AppNavbar";
 
 export const metadata = {
   title: "Create Next App",
@@ -8,7 +10,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className=" bg-zinc-300 font-base">{children}</body>
+      <body className="bg-zinc-300 font-base">
+        <AppNavbar />
+        {children}
+        <AppFooter />
+      </body>
     </html>
   );
 }
