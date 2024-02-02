@@ -82,28 +82,34 @@ const Alumn = ({ params }) => {
                   </ul>
                 </div>
               </div>
-              <div>
-                {alumn.homeworks.length > 0 && (
-                  <>
-                    <h5 className="text-xl font-semibold border-b py-3 px-5 shadow rounded-xl">
-                      Homeworks
-                    </h5>
-                    <ul className="flex items-center gap-2 w-full flex-wrap py-2">
-                      {alumn.homeworks.map((item) => {
-                        return (
-                          <li
-                            key={item.id}
-                            className="px-3 py-1 border rounded-lg flex items-center gap-2 shadow italic"
-                          >
-                            {item.name}
-                            <span>{item.done ? <>✔️</> : <>❌</>}</span>
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  </>
-                )}
-              </div>
+              {alumn.homeworks && (
+                <div>
+                  {alumn.homeworks.length > 0 ? (
+                    <>
+                      <h5 className="text-xl font-semibold border-b py-3 px-5 shadow rounded-xl">
+                        Homeworks
+                      </h5>
+                      <ul className="flex items-center gap-2 w-full flex-wrap py-2">
+                        {alumn.homeworks.map((item) => {
+                          return (
+                            <li
+                              key={item.id}
+                              className="px-3 py-1 border rounded-lg flex items-center gap-2 shadow italic"
+                            >
+                              {item.name}
+                              <span>{item.done ? <>✔️</> : <>❌</>}</span>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </>
+                  ) : (
+                    <>
+                      <h5>No homeworks yet!</h5>
+                    </>
+                  )}
+                </div>
+              )}
             </div>
             <div className="bg-slate-200 p-3 rounded-lg h-full w-full overflow-y-auto">
               <div className="pb-2 border-b-2 border-white flex items-center justify-between w-full">
