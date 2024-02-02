@@ -53,7 +53,7 @@ const NewNoteView = () => {
           <span className="text-xl">New Note</span>
           <Link
             href="/dashboard"
-            className="bg-slate-200 uppercase px-6 py-1 rounded-lg hover:bg-slate-300 hover:text-white cursor-pointer"
+            className="bg-primary text-white uppercase font-semibold px-6 py-1 rounded-lg hover:bg-secondary transition-colors duration-200 ease-in-out"
           >
             Back
           </Link>
@@ -71,7 +71,7 @@ const NewNoteView = () => {
               <div className="w-full flex flex-col gap-2">
                 <label htmlFor="note-name">Note name</label>
                 <input
-                  className="bg-slate-200 p-3 rounded-xl mx-1 focus:outline-0"
+                  className="bg-zinc-200 p-3 rounded-xl mx-1 focus:outline-0"
                   type="text"
                   name="note_name"
                   id="note-name"
@@ -82,7 +82,7 @@ const NewNoteView = () => {
               <div className="w-full flex flex-col gap-2">
                 <label htmlFor="note-text">Note content</label>
                 <input
-                  className="bg-slate-200 p-3 rounded-xl mx-1 focus:outline-0"
+                  className="bg-zinc-200 p-3 rounded-xl mx-1 focus:outline-0"
                   type="text"
                   name="note_text"
                   id="note-text"
@@ -94,15 +94,15 @@ const NewNoteView = () => {
             <div className="flex items-center justify-end gap-2">
               <button
                 type="reset"
-                className="bg-slate-200 uppercase font-semibold px-6 py-1 rounded-lg hover:bg-slate-300 hover:text-white cursor-pointer"
+                className="bg-primary text-white uppercase font-semibold px-6 py-1 rounded-lg hover:bg-secondary transition-colors duration-200 ease-in-out"
               >
-                Reset
+                Reset &#8634;
               </button>
               <button
                 type="submit"
-                className="bg-slate-200 uppercase font-semibold px-6 py-1 rounded-lg hover:bg-slate-300 hover:text-white cursor-pointer"
+                className="bg-primary text-white uppercase font-semibold px-6 py-1 rounded-lg hover:bg-secondary transition-colors duration-200 ease-in-out"
               >
-                Add
+                Add &#43;
               </button>
             </div>
           </form>

@@ -49,14 +49,14 @@ const Alumn = ({ params }) => {
               <span className="text-xl font-semibold">{alumn.name}</span>
               <Link
                 href="/dashboard"
-                className="bg-slate-300 uppercase font-semibold px-6 py-1 rounded-lg hover:bg-slate-400 hover:text-white cursor-pointer"
+                className="bg-primary text-white uppercase font-semibold px-6 py-1 rounded-lg hover:bg-secondary transition-colors duration-200 ease-in-out"
               >
                 Back
               </Link>
             </div>
           </div>
-          <div className="h-80 flex flex-col items-start justify-start">
-            <div className="p-3 rounded-lg w-full flex items-start justify-between">
+          <div className="min-h-80 grid grid-flow-row grid-cols-1 lg:grid-cols-2">
+            <div className="p-3 rounded-lg w-full lg:col-span-2 grid grid-flow-row grid-cols-1 lg:grid-cols-2 gap-4">
               <div>
                 <h6 className="font-bold text-xl">About</h6>
                 <div className="w-full flex items-start justify-start gap-12">
@@ -83,10 +83,10 @@ const Alumn = ({ params }) => {
                 </div>
               </div>
               {alumn.homeworks && (
-                <div>
+                <div className="w-full">
                   {alumn.homeworks.length > 0 ? (
                     <>
-                      <h5 className="text-xl font-semibold border-b py-3 px-5 shadow rounded-xl">
+                      <h5 className="text-xl font-semibold border-b py-3 px-5 shadow rounded-xl w-full">
                         Homeworks
                       </h5>
                       <ul className="flex items-center gap-2 w-full flex-wrap py-2">
@@ -94,7 +94,7 @@ const Alumn = ({ params }) => {
                           return (
                             <li
                               key={item.id}
-                              className="px-3 py-1 border rounded-lg flex items-center gap-2 shadow italic"
+                              className="px-3 py-1 even:bg-zinc-100  rounded-lg flex items-center gap-2 shadow italic"
                             >
                               {item.name}
                               <span>{item.done ? <>✔️</> : <>❌</>}</span>
@@ -111,12 +111,18 @@ const Alumn = ({ params }) => {
                 </div>
               )}
             </div>
-            <div className="bg-slate-200 p-3 rounded-lg h-full w-full overflow-y-auto">
+            <div
+              className={
+                isEditing
+                  ? "bg-zinc-200 rounded-xl h-full w-full p-3 lg:col-span-2"
+                  : "bg-zinc-100 rounded-xl h-full w-full p-3 lg:col-span-2"
+              }
+            >
               <div className="pb-2 border-b-2 border-white flex items-center justify-between w-full">
                 <h6 className="font-bold text-xl">Notes</h6>
                 <button
                   type={isEditing ? "reset" : "button"}
-                  className="bg-slate-300 uppercase font-semibold px-6 py-1 rounded-lg hover:bg-slate-400 hover:text-white cursor-pointer"
+                  className="bg-primary text-white uppercase font-semibold px-6 py-1 rounded-lg hover:bg-secondary transition-colors duration-200 ease-in-out"
                   onClick={toggleEdit}
                 >
                   {isEditing ? <>Close</> : <>Edit</>}
@@ -137,11 +143,12 @@ const Alumn = ({ params }) => {
                         id="notes_input"
                         value={data.note}
                         onChange={handleInputChange}
-                        className="w-full p-2"
+                        rows="3"
+                        className="w-full p-2 bg-zinc-200 border-2 border-white rounded-b-xl focus:outline-0"
                       ></textarea>
                       <button
                         type="submit"
-                        className="bg-slate-300 uppercase font-semibold px-6 py-1 rounded-lg hover:bg-slate-400 hover:text-white cursor-pointer"
+                        className="bg-primary text-white uppercase font-semibold px-6 py-1 rounded-lg hover:bg-secondary transition-colors duration-200 ease-in-out"
                       >
                         Done
                       </button>
@@ -161,7 +168,7 @@ const Alumn = ({ params }) => {
             <div className="flex items-center justify-end w-full border-b py-3 px-5 shadow-lg rounded-xl">
               <Link
                 href="/dashboard"
-                className="bg-slate-300 uppercase font-semibold px-6 py-2 rounded-lg hover:bg-slate-400 hover:text-white cursor-pointer"
+                className="bg-primary text-white uppercase font-semibold px-6 py-1 rounded-lg hover:bg-secondary transition-colors duration-200 ease-in-out"
               >
                 Back
               </Link>

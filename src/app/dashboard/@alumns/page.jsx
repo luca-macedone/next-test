@@ -45,7 +45,7 @@ const AlumnsSlot = () => {
                   // console.log(alumn);
                   return (
                     <li
-                      className="flex items-center gap-4 shadow-lg rounded-3xl px-3 py-2 mx-3 my-5 bg-slate-200"
+                      className="flex items-center gap-4 shadow-lg rounded-3xl px-3 py-2 mx-3 my-5 bg-zinc-100"
                       key={alumn.id}
                     >
                       <div>
@@ -62,7 +62,7 @@ const AlumnsSlot = () => {
                         </div>
                         <Link
                           href={`/dashboard/details/${alumn.id}`}
-                          className="bg-slate-100 uppercase font-semibold px-3 py-1 rounded-lg hover:bg-slate-300 hover:text-white cursor-pointer"
+                          className="bg-primary text-white uppercase font-semibold px-6 py-1 rounded-lg hover:bg-secondary transition-colors duration-200 ease-in-out"
                         >
                           details
                         </Link>
@@ -72,14 +72,14 @@ const AlumnsSlot = () => {
                 })
               ) : (
                 <div className="h-full w-full flex items-center justify-center">
-                  <h2 className="bg-slate-100 w-full rounded-lg py-5 mx-1 shadow-lg text-center">
+                  <h2 className="bg-zinc-100 w-full rounded-lg py-5 mx-1 shadow-lg text-center">
                     Nothing here...yet!
                   </h2>
                 </div>
               )
             ) : (
               <div className="w-full h-full flex items-center justify-center">
-                <h2 className="bg-slate-100 rounded-xl shadow-lg flex items-center justify-center gap-3 w-full py-5 mx-1">
+                <h2 className="bg-zinc-100 rounded-xl shadow-lg flex items-center justify-center gap-3 w-full py-5 mx-1">
                   Loading...
                   <span className="material-symbols-outlined animate-spin">
                     progress_activity

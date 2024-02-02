@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
+import Image from "next/image";
 
 const alumn = {
   createdAt: "2024-01-29T09:08:34.167Z",
@@ -45,14 +46,16 @@ const AlumnsSlot = () => {
                   // console.log(alumn);
                   return (
                     <li
-                      className="flex items-center gap-4 shadow-lg rounded-3xl px-3 py-2 mx-3 my-5 bg-slate-200"
+                      className="flex items-center gap-4 shadow-lg rounded-3xl px-3 py-2 mx-3 my-5 bg-zinc-100"
                       key={alumn.id}
                     >
                       <div>
-                        <img
+                        <Image
                           src={alumn.avatar}
                           alt={alumn.name}
                           className="rounded-full h-20"
+                          height="80"
+                          width="80"
                         />
                       </div>
                       <div className="flex items-center justify-between w-full">
@@ -62,7 +65,7 @@ const AlumnsSlot = () => {
                         </div>
                         <Link
                           href={`/dashboard/details/${alumn.id}`}
-                          className="bg-slate-100 uppercase font-semibold px-3 py-1 rounded-lg hover:bg-slate-300 hover:text-white cursor-pointer"
+                          className="bg-primary text-white uppercase font-semibold px-6 py-1 rounded-lg hover:bg-secondary transition-colors duration-200 ease-in-out"
                         >
                           details
                         </Link>

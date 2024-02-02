@@ -39,7 +39,7 @@ const NotesSlot = () => {
           <span className="text-xl font-semibold">Notes</span>
           <Link
             href="/dashboard/new"
-            className="bg-slate-200 uppercase font-semibold px-6 py-1 rounded-lg hover:bg-slate-300 hover:text-white cursor-pointer"
+            className="bg-primary text-white uppercase font-semibold px-6 py-1 rounded-lg hover:bg-secondary transition-colors duration-200 ease-in-out"
           >
             new
           </Link>

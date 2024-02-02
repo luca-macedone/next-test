@@ -15,6 +15,10 @@ module.exports = {
       fontFamily: {
         base: ['"Rubik"', "sans-serif"],
       },
+      colors: {
+        primary: "#CACABC",
+        secondary: "#1E3B43",
+      },
     },
   },
   plugins: [],

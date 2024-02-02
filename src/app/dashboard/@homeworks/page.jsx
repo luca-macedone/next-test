@@ -31,65 +31,69 @@ const HomeworksSlot = () => {
               action={addHomework}
               className="pt-5 flex flex-col gap-3 w-full items-start justify-start"
             >
-              <div className="flex items-start justify-between w-full">
-                <div className="w-full flex flex-col gap-2">
-                  <label htmlFor="alumn">Alumn</label>
-                  <select
-                    name="alumn"
-                    id="alumn"
-                    className="bg-slate-200 p-3 rounded-xl mx-1 focus:outline-0"
-                  >
-                    {alumns.map((alumn) => {
-                      return (
-                        <option
-                          key={alumn.id}
-                          value={alumn.id}
-                          className="py-4 inline-block"
-                        >
-                          {alumn.name}
-                        </option>
-                      );
-                    })}
-                  </select>
-                </div>
-                <div className="w-full flex flex-col gap-2">
-                  <label htmlFor="homework-name">Name</label>
-                  <input
-                    className="bg-slate-200 p-3 rounded-xl mx-1 focus:outline-0"
-                    type="text"
-                    name="homework_name"
-                    id="homework-name"
-                  />
-                </div>
+              <div className="w-full flex flex-col gap-2">
+                <label htmlFor="alumn">Alumn</label>
+                <select
+                  name="alumn"
+                  id="alumn"
+                  className="bg-zinc-200 p-3 rounded-xl mx-1 focus:outline-0"
+                >
+                  {alumns.map((alumn) => {
+                    return (
+                      <option
+                        key={alumn.id}
+                        value={alumn.id}
+                        className="py-4 inline-block"
+                      >
+                        {alumn.name}
+                      </option>
+                    );
+                  })}
+                </select>
               </div>
+              <div className="w-full flex flex-col gap-2">
+                <label htmlFor="homework-name">Name</label>
+                <input
+                  className="bg-zinc-200 p-3 rounded-xl mx-1 focus:outline-0"
+                  type="text"
+                  name="homework_name"
+                  id="homework-name"
+                />
+              </div>
+
               <div className="w-full flex flex-col gap-2">
                 <label htmlFor="homework-description">Description</label>
                 <textarea
                   name="homework_description"
                   id="homework-description"
                   rows="4"
-                  className="bg-slate-200 p-3 rounded-xl mx-1 focus:outline-0"
+                  className="bg-zinc-200 p-3 rounded-xl mx-1 focus:outline-0"
                 ></textarea>
               </div>
               <div className="flex items-center justify-end gap-2">
                 <button
                   type="reset"
-                  className="bg-slate-200 uppercase font-semibold px-6 py-1 rounded-lg hover:bg-slate-300 hover:text-white cursor-pointer"
+                  className="bg-primary text-white uppercase font-semibold px-6 py-1 rounded-lg hover:bg-secondary transition-colors duration-200 ease-in-out"
                 >
-                  Reset
+                  Reset &#8634;
                 </button>
                 <button
                   type="submit"
-                  className="bg-slate-200 uppercase font-semibold px-6 py-1 rounded-lg hover:bg-slate-300 hover:text-white cursor-pointer"
+                  className="bg-primary text-white uppercase font-semibold px-6 py-1 rounded-lg hover:bg-secondary transition-colors duration-200 ease-in-out"
                 >
-                  Add
+                  Add &#43;
                 </button>
               </div>
             </form>
           ) : (
-            <>
-              <h1>loading</h1>
-            </>
+            <div className="h-full w-full flex items-center justify-center">
+              <h2 className="bg-zinc-100 rounded-3xl p-10 shadow-lg flex items-center justify-center gap-3">
+                Loading...
+                <span class="material-symbols-outlined animate-spin">
+                  progress_activity
+                </span>
+              </h2>
+            </div>
           )}
         </div>
       </div>
