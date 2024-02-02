@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="container py-10 flex items-center justify-center min-h-screen">
+    <main className="container py-10 flex items-center justify-center min-h-screen mx-auto">
       <div className="flex flex-col items-center gap-8">
         <Image
           src="/logo.svg"
